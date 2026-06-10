@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mago Tips — Super Odd</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','1133788631722103');
+fbq('init','1334728107861230');
+fbq('track','PageView');
+fbq('track','ViewContent');
+</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1133788631722103&ev=PageView&noscript=1"/></noscript>
+<style>
+*{ margin:0; padding:0; box-sizing:border-box; }
+html,body{ font-family:'Montserrat',sans-serif; color:#fff; -webkit-tap-highlight-color:transparent; min-height:100%; background:#000; }
+body::after{ content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity:0.035; pointer-events:none; z-index:-1; }
+
+.page{ max-width:480px; margin:0 auto; padding:24px 20px 120px; display:flex; flex-direction:column; align-items:center; gap:20px; min-height:100vh; }
+
+.badge{ background:linear-gradient(90deg,#c9a227,#f5d060,#c9a227); border-radius:999px; padding:6px 20px; font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:#000; }
+
+.hero{ text-align:center; line-height:1; }
+.hero-odd{ font-size:clamp(52px,18vw,80px); font-weight:900; font-style:italic; color:#f5d060; text-shadow:0 0 40px rgba(245,208,96,.5); letter-spacing:-2px; }
+.hero-label{ font-size:13px; font-weight:700; color:rgba(255,255,255,.5); letter-spacing:3px; text-transform:uppercase; margin-top:4px; }
+
+.section-title{ font-size:13px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.45); align-self:flex-start; }
+
+.carousel-viewport{ width:100%; overflow:hidden; border-radius:16px; }
+.carousel-track{ display:flex; transition:transform 0.45s cubic-bezier(.4,0,.2,1); will-change:transform; }
+
+.match-card{ min-width:100%; background:rgba(0,0,0,.55); border:1.5px solid rgba(245,208,96,.35); border-radius:16px; overflow:hidden; box-shadow:0 0 30px rgba(245,208,96,.1),0 0 60px rgba(245,208,96,.05),inset 0 0 40px rgba(0,0,0,.3); }
+.card-header{ background:rgba(255,255,255,.05); border-bottom:1px solid rgba(245,208,96,.2); padding:10px 16px; display:flex; align-items:center; justify-content:center; gap:8px; font-size:13px; font-weight:700; letter-spacing:1px; }
+.teams-row{ padding:18px 20px; display:flex; align-items:center; justify-content:center; gap:16px; border-bottom:1px solid rgba(255,255,255,.07); }
+.team-side{ display:flex; flex-direction:column; align-items:center; gap:8px; flex:1; }
+.team-logo{ width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); display:flex; align-items:center; justify-content:center; overflow:hidden; font-size:36px; }
+.team-name{ font-size:12px; font-weight:800; text-align:center; letter-spacing:.5px; text-transform:uppercase; color:rgba(255,255,255,.85); }
+.vs-text{ font-size:22px; font-weight:900; color:rgba(255,255,255,.7); letter-spacing:-1px; flex-shrink:0; }
+.comp-row{ padding:10px 16px; display:flex; align-items:center; justify-content:center; gap:10px; border-bottom:1px solid rgba(255,255,255,.07); font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.6); }
+.day-pill{ background:#c9a227; border-radius:6px; padding:3px 10px; font-size:11px; font-weight:800; color:#000; }
+.market-row{ padding:12px 16px; text-align:center; border-bottom:1px solid rgba(255,255,255,.07); }
+.market-label{ font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:4px; }
+.market-name{ font-size:14px; font-weight:800; color:#f5d060; }
+.odds-row{ padding:14px 20px; display:flex; align-items:center; justify-content:center; gap:12px; }
+.odd-from{ text-align:center; opacity:.5; }
+.odd-from-label{ font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.5); }
+.odd-from-val{ font-size:22px; font-weight:900; text-decoration:line-through; color:rgba(255,255,255,.4); }
+.odd-arrow{ font-size:20px; color:rgba(255,255,255,.3); }
+.odd-to{ text-align:center; }
+.odd-to-label{ font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#f5d060; }
+.odd-to-val{ font-size:38px; font-weight:900; color:#f5d060; text-shadow:0 0 20px rgba(245,208,96,.6); line-height:1; }
+
+.carousel-dots{ display:flex; justify-content:center; gap:6px; margin-top:12px; }
+.dot{ width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.2); transition:all .3s; cursor:pointer; }
+.dot.active{ background:#f5d060; width:18px; border-radius:3px; }
+
+.scarcity-box{ width:100%; background:rgba(201,162,39,.08); border:1px solid rgba(201,162,39,.25); border-radius:14px; padding:14px 16px; text-align:center; }
+.scarcity-title{ font-size:12px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#f5d060; margin-bottom:6px; }
+.scarcity-timer{ font-size:28px; font-weight:900; color:#fff; letter-spacing:3px; font-variant-numeric:tabular-nums; }
+.scarcity-sub{ font-size:11px; color:rgba(255,255,255,.4); margin-top:4px; }
+
+.social-proof{ display:flex; align-items:center; gap:10px; background:rgba(201,162,39,.06); border:1px solid rgba(201,162,39,.15); border-radius:10px; padding:10px 14px; font-size:12px; color:rgba(255,255,255,.5); width:100%; }
+.social-proof strong{ color:#f5d060; }
+
+/* STICKY CTA */
+.sticky-wrap{ position:fixed; bottom:0; left:0; right:0; z-index:200; padding:12px 16px 24px; background:linear-gradient(to top,rgba(0,0,0,1) 60%,transparent); }
+.cta-btn{ display:block; width:100%; max-width:480px; margin:0 auto; padding:20px 24px; background:linear-gradient(135deg,#c9a227,#f5d060); color:#000; font-size:18px; font-weight:900; text-decoration:none; border-radius:16px; letter-spacing:.3px; box-shadow:0 8px 32px rgba(201,162,39,.6); animation:pulseCta 1.8s ease-in-out infinite; text-align:center; touch-action:manipulation; }
+@keyframes pulseCta{
+  0%,100%{ box-shadow:0 8px 32px rgba(201,162,39,.5),0 0 0 0 rgba(245,208,96,.4); }
+  50%{ box-shadow:0 8px 50px rgba(201,162,39,.7),0 0 0 8px rgba(245,208,96,0); }
+}
+.cta-btn:active{ transform:scale(0.98); }
+.cta-sub{ text-align:center; font-size:11px; color:rgba(255,255,255,.3); margin-top:6px; max-width:480px; margin-left:auto; margin-right:auto; }
+
+.disclaimer{ font-size:10px; color:rgba(255,255,255,.2); text-align:center; padding:0 8px; line-height:1.5; }
+</style>
+</head>
+<body>
+<div class="page">
+  <span class="badge">🔮 Mago Tips · Exclusivo</span>
+
+  <div class="hero">
+    <div class="hero-odd">ODD 100</div>
+    <div class="hero-label">Super odd do dia</div>
+  </div>
+
+  <p class="section-title">🔥 Jogos de hoje</p>
+
+  <div style="width:100%;">
+    <div class="carousel-viewport">
+      <div class="carousel-track" id="track">
+        <!-- Jogo 1: Paquistão vs Afeganistão -->
+        <div class="match-card">
+          <div class="card-header">⚽ Amistosos Internacionais</div>
+          <div class="teams-row">
+            <div class="team-side"><div class="team-logo">🇵🇰</div><div class="team-name">Paquistão</div></div>
+            <div class="vs-text">VS</div>
+            <div class="team-side"><div class="team-logo">🇦🇫</div><div class="team-name">Afeganistão</div></div>
+          </div>
+          <div class="comp-row">Amistoso Internacional <span class="day-pill">13:00</span></div>
+          <div class="market-row"><div class="market-label">Mercado</div><div class="market-name">🔒 Palpite exclusivo</div></div>
+          <div class="odds-row">
+            <div class="odd-from"><div class="odd-from-label">De</div><div class="odd-from-val">1.78</div></div>
+            <div class="odd-arrow">»</div>
+            <div class="odd-to"><div class="odd-to-label">Para</div><div class="odd-to-val">100</div></div>
+          </div>
+        </div>
+        <!-- Jogo 2: Portugal vs Nigéria -->
+        <div class="match-card">
+          <div class="card-header">⚽ Amistosos Internacionais</div>
+          <div class="teams-row">
+            <div class="team-side"><div class="team-logo">🇵🇹</div><div class="team-name">Portugal</div></div>
+            <div class="vs-text">VS</div>
+            <div class="team-side"><div class="team-logo">🇳🇬</div><div class="team-name">Nigéria</div></div>
+          </div>
+          <div class="comp-row">Amistoso Internacional <span class="day-pill">16:45</span></div>
+          <div class="market-row"><div class="market-label">Mercado</div><div class="market-name">🔒 Palpite exclusivo</div></div>
+          <div class="odds-row">
+            <div class="odd-from"><div class="odd-from-label">De</div><div class="odd-from-val">1.78</div></div>
+            <div class="odd-arrow">»</div>
+            <div class="odd-to"><div class="odd-to-label">Para</div><div class="odd-to-val">100</div></div>
+          </div>
+        </div>
+        <!-- Jogo 3: Inglaterra vs Costa Rica -->
+        <div class="match-card">
+          <div class="card-header">⚽ Amistosos Internacionais</div>
+          <div class="teams-row">
+            <div class="team-side"><div class="team-logo">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="team-name">Inglaterra</div></div>
+            <div class="vs-text">VS</div>
+            <div class="team-side"><div class="team-logo">🇨🇷</div><div class="team-name">Costa Rica</div></div>
+          </div>
+          <div class="comp-row">Amistoso Internacional <span class="day-pill">17:00</span></div>
+          <div class="market-row"><div class="market-label">Mercado</div><div class="market-name">🔒 Palpite exclusivo</div></div>
+          <div class="odds-row">
+            <div class="odd-from"><div class="odd-from-label">De</div><div class="odd-from-val">1.78</div></div>
+            <div class="odd-arrow">»</div>
+            <div class="odd-to"><div class="odd-to-label">Para</div><div class="odd-to-val">100</div></div>
+          </div>
+        </div>
+        <!-- Jogo 4: Bolívia vs Argélia -->
+        <div class="match-card">
+          <div class="card-header">⚽ Amistosos Internacionais</div>
+          <div class="teams-row">
+            <div class="team-side"><div class="team-logo">🇧🇴</div><div class="team-name">Bolívia</div></div>
+            <div class="vs-text">VS</div>
+            <div class="team-side"><div class="team-logo">🇩🇿</div><div class="team-name">Argélia</div></div>
+          </div>
+          <div class="comp-row">Amistoso Internacional <span class="day-pill" style="background:#e53935;color:#fff;">Hoje 21:00</span></div>
+          <div class="market-row"><div class="market-label">Mercado</div><div class="market-name">🔒 Palpite exclusivo</div></div>
+          <div class="odds-row">
+            <div class="odd-from"><div class="odd-from-label">De</div><div class="odd-from-val">1.78</div></div>
+            <div class="odd-arrow">»</div>
+            <div class="odd-to"><div class="odd-to-label">Para</div><div class="odd-to-val">100</div></div>
+          </div>
+        </div>
+        <!-- Jogo 5: Ceará vs Avaí -->
+        <div class="match-card">
+          <div class="card-header">⚽ Brasileirão Série B</div>
+          <div class="teams-row">
+            <div class="team-side"><div class="team-logo">⬛</div><div class="team-name">Ceará</div></div>
+            <div class="vs-text">VS</div>
+            <div class="team-side"><div class="team-logo">🔵</div><div class="team-name">Avaí</div></div>
+          </div>
+          <div class="comp-row">Série B · Rodada 12 <span class="day-pill">20:00</span></div>
+          <div class="market-row"><div class="market-label">Mercado</div><div class="market-name">🔒 Palpite exclusivo</div></div>
+          <div class="odds-row">
+            <div class="odd-from"><div class="odd-from-label">De</div><div class="odd-from-val">1.78</div></div>
+            <div class="odd-arrow">»</div>
+            <div class="odd-to"><div class="odd-to-label">Para</div><div class="odd-to-val">100</div></div>
+          </div>
+        </div>
+        <!-- Jogo 6: Goiás vs Grêmio Novorizontino -->
+        <div class="match-card">
+          <div class="card-header">⚽ Brasileirão Série B</div>
+          <div class="teams-row">
+            <div class="team-side"><div class="team-logo">💚</div><div class="team-name">Goiás</div></div>
+            <div class="vs-text">VS</div>
+            <div class="team-side"><div class="team-logo">🟡</div><div class="team-name">Grêmio Novo.</div></div>
+          </div>
+          <div class="comp-row">Série B · Rodada 12 <span class="day-pill">20:00</span></div>
+          <div class="market-row"><div class="market-label">Mercado</div><div class="market-name">🔒 Palpite exclusivo</div></div>
+          <div class="odds-row">
+            <div class="odd-from"><div class="odd-from-label">De</div><div class="odd-from-val">1.78</div></div>
+            <div class="odd-arrow">»</div>
+            <div class="odd-to"><div class="odd-to-label">Para</div><div class="odd-to-val">100</div></div>
+          </div>
+        </div>
+        <!-- Jogo 7: Sport Recife vs Athletic SJDR -->
+        <div class="match-card">
+          <div class="card-header">⚽ Brasileirão Série B</div>
+          <div class="teams-row">
+            <div class="team-side"><div class="team-logo">🔴⚫</div><div class="team-name">Sport Recife</div></div>
+            <div class="vs-text">VS</div>
+            <div class="team-side"><div class="team-logo">⚫🔴</div><div class="team-name">Athletic SJDR</div></div>
+          </div>
+          <div class="comp-row">Série B · Rodada 12 <span class="day-pill" style="background:#e53935;color:#fff;">Hoje 21:00</span></div>
+          <div class="market-row"><div class="market-label">Mercado</div><div class="market-name">🔒 Palpite exclusivo</div></div>
+          <div class="odds-row">
+            <div class="odd-from"><div class="odd-from-label">De</div><div class="odd-from-val">1.78</div></div>
+            <div class="odd-arrow">»</div>
+            <div class="odd-to"><div class="odd-to-label">Para</div><div class="odd-to-val">100</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-dots" id="dots"></div>
+  </div>
+
+  <div class="scarcity-box">
+    <div class="scarcity-title">⏰ Vagas limitadas</div>
+    <div class="scarcity-timer" id="timer">14:59</div>
+    <div class="scarcity-sub">Após esse tempo o acesso pode ser fechado</div>
+  </div>
+
+  <div class="social-proof">
+    <span>🔥</span>
+    <div><strong>+4.200 membros</strong> já recebem os palpites do Mago</div>
+  </div>
+
+  <p class="disclaimer">
+    Apostas esportivas para maiores de 18 anos.<br/>
+    Jogue com responsabilidade.
+  </p>
+</div>
+
+<!-- STICKY CTA -->
+<div class="sticky-wrap">
+  <a class="cta-btn" href="https://t.me/+m9kzGu7glvNlZTQx"
+     onclick="fbq('track','Lead'); fbq('track','CompleteRegistration');">
+    ⚡ ENTRAR NO GRUPO GRÁTIS
+  </a>
+  <p class="cta-sub">🔒 Grupo gratuito · Acesso imediato</p>
+</div>
+
+<script>
+// Carousel
+const track = document.getElementById('track');
+const dotsEl = document.getElementById('dots');
+const cards = track.querySelectorAll('.match-card');
+let cur = 0;
+
+cards.forEach((_,i) => {
+  const d = document.createElement('div');
+  d.className = 'dot' + (i===0?' active':'');
+  d.onclick = () => goTo(i);
+  dotsEl.appendChild(d);
+});
+
+function goTo(n) {
+  cur = n;
+  track.style.transform = `translateX(-${cur*100}%)`;
+  dotsEl.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active',i===cur));
+}
+
+let startX = 0;
+track.addEventListener('touchstart', e => startX = e.touches[0].clientX, {passive:true});
+track.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - startX;
+  if (Math.abs(dx) > 40) goTo(Math.max(0, Math.min(cards.length-1, cur + (dx<0?1:-1))));
+}, {passive:true});
+
+setInterval(() => goTo((cur+1) % cards.length), 4000);
+
+// Countdown
+const KEY = '_rm_cd';
+let end = parseInt(sessionStorage.getItem(KEY)||'0');
+if (!end || end < Date.now()) { end = Date.now()+15*60*1000; sessionStorage.setItem(KEY,end); }
+const timerEl = document.getElementById('timer');
+function tick() {
+  const diff = Math.max(0, end-Date.now());
+  const m = Math.floor(diff/60000), s = Math.floor((diff%60000)/1000);
+  timerEl.textContent = String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+  if (diff>0) requestAnimationFrame(tick); else timerEl.textContent='00:00';
+}
+tick();
+</script>
+</body>
+</html>
