@@ -1,280 +1,483 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Mago Tips — Super Odd</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,600;0,700;0,800;0,900;1,900&display=swap" rel="stylesheet">
-<script>
-!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
-fbq('init','1133788631722103');
-fbq('init','1334728107861230');
-fbq('track','PageView');
-fbq('track','ViewContent');
-</script>
-<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1133788631722103&ev=PageView&noscript=1"/></noscript>
-<style>
-*{ margin:0; padding:0; box-sizing:border-box; }
-html,body{ font-family:'Montserrat',sans-serif; color:#fff; -webkit-tap-highlight-color:transparent; min-height:100%; background:#000; }
-body::after{ content:''; position:fixed; inset:0; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E"); opacity:0.035; pointer-events:none; z-index:-1; }
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+  <title>MagoTips — As Entradas Mais Insanas do Dia</title>
 
-.page{ max-width:480px; margin:0 auto; padding:24px 20px 120px; display:flex; flex-direction:column; align-items:center; gap:20px; min-height:100vh; }
+  <script>
+  !function(f,b,e,v,n,t,s)
+  {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+  if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+  n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];
+  s.parentNode.insertBefore(t,s)}(window, document,'script',
+  'https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '953058917590545');
+  fbq('track', 'PageView');
 
-.badge{ background:linear-gradient(90deg,#c9a227,#f5d060,#c9a227); border-radius:999px; padding:6px 20px; font-size:11px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:#000; }
+  async function trackLead(e) {
+    e.preventDefault();
+    const eventId = 'cr_' + Date.now();
+    fbq('track', 'CompleteRegistration', {}, { eventID: eventId });
+    try {
+      await fetch('https://api-ramon-production.up.railway.app/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fbp: document.cookie.match(/_fbp=([^;]+)/)?.[1] || null,
+          fbc: document.cookie.match(/_fbc=([^;]+)/)?.[1] || null,
+          userAgent: navigator.userAgent,
+          eventId: eventId
+        })
+      });
+    } catch(err) {}
+    window.location.href = 'https://t.me/+m9kzGu7glvNlZTQx';
+  }
+  </script>
 
-.hero{ text-align:center; line-height:1; }
-.hero-odd{ font-size:clamp(52px,18vw,80px); font-weight:900; font-style:italic; color:#f5d060; text-shadow:0 0 40px rgba(245,208,96,.5); letter-spacing:-2px; }
-.hero-label{ font-size:13px; font-weight:700; color:rgba(255,255,255,.5); letter-spacing:3px; text-transform:uppercase; margin-top:4px; }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
 
-.section-title{ font-size:13px; font-weight:800; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.45); align-self:flex-start; }
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-.carousel-viewport{ width:100%; overflow:hidden; border-radius:16px; }
-.carousel-track{ display:flex; transition:transform 0.45s cubic-bezier(.4,0,.2,1); will-change:transform; }
+    html, body {
+      background: #060a06;
+      color: #fff;
+      font-family: 'Montserrat', sans-serif;
+      min-height: 100%;
+      overflow-x: hidden;
+    }
 
-.match-card{ min-width:100%; background:rgba(0,0,0,.55); border:1.5px solid rgba(245,208,96,.35); border-radius:16px; overflow:hidden; box-shadow:0 0 30px rgba(245,208,96,.1),0 0 60px rgba(245,208,96,.05),inset 0 0 40px rgba(0,0,0,.3); }
-.card-header{ background:rgba(255,255,255,.05); border-bottom:1px solid rgba(245,208,96,.2); padding:10px 16px; display:flex; align-items:center; justify-content:center; gap:8px; font-size:13px; font-weight:700; letter-spacing:1px; }
-.teams-row{ padding:18px 20px; display:flex; align-items:center; justify-content:center; gap:16px; border-bottom:1px solid rgba(255,255,255,.07); }
-.team-side{ display:flex; flex-direction:column; align-items:center; gap:8px; flex:1; }
-.team-logo{ width:64px; height:64px; border-radius:50%; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.1); display:flex; align-items:center; justify-content:center; overflow:hidden; font-size:36px; }
-.team-name{ font-size:12px; font-weight:800; text-align:center; letter-spacing:.5px; text-transform:uppercase; color:rgba(255,255,255,.85); }
-.vs-text{ font-size:22px; font-weight:900; color:rgba(255,255,255,.7); letter-spacing:-1px; flex-shrink:0; }
-.comp-row{ padding:10px 16px; display:flex; align-items:center; justify-content:center; gap:10px; border-bottom:1px solid rgba(255,255,255,.07); font-size:12px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.6); }
-.day-pill{ background:#c9a227; border-radius:6px; padding:3px 10px; font-size:11px; font-weight:800; color:#000; }
-.market-row{ padding:12px 16px; text-align:center; border-bottom:1px solid rgba(255,255,255,.07); }
-.market-label{ font-size:10px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.35); margin-bottom:4px; }
-.market-name{ font-size:14px; font-weight:800; color:#f5d060; }
-.odds-row{ padding:14px 20px; display:flex; align-items:center; justify-content:center; gap:12px; }
-.odd-from{ text-align:center; opacity:.5; }
-.odd-from-label{ font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:rgba(255,255,255,.5); }
-.odd-from-val{ font-size:22px; font-weight:900; text-decoration:line-through; color:rgba(255,255,255,.4); }
-.odd-arrow{ font-size:20px; color:rgba(255,255,255,.3); }
-.odd-to{ text-align:center; }
-.odd-to-label{ font-size:9px; font-weight:700; letter-spacing:1px; text-transform:uppercase; color:#f5d060; }
-.odd-to-val{ font-size:38px; font-weight:900; color:#f5d060; text-shadow:0 0 20px rgba(245,208,96,.6); line-height:1; }
+    .page {
+      max-width: 480px;
+      margin: 0 auto;
+      background: #060a06;
+      min-height: 100vh;
+    }
 
-.carousel-dots{ display:flex; justify-content:center; gap:6px; margin-top:12px; }
-.dot{ width:6px; height:6px; border-radius:50%; background:rgba(255,255,255,.2); transition:all .3s; cursor:pointer; }
-.dot.active{ background:#f5d060; width:18px; border-radius:3px; }
+    /* ── TOP BADGE ── */
+    .top-badge {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      background: #060a06;
+    }
+    .badge-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1.5px solid rgba(255,255,255,0.25);
+      border-radius: 100px;
+      padding: 8px 20px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #fff;
+    }
+    .badge-icon {
+      width: 18px; height: 18px;
+      background: #2ECC40;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .badge-icon svg { width: 11px; height: 11px; }
+    .badge-pill .hl { color: #2ECC40; }
 
-.scarcity-box{ width:100%; background:rgba(201,162,39,.08); border:1px solid rgba(201,162,39,.25); border-radius:14px; padding:14px 16px; text-align:center; }
-.scarcity-title{ font-size:12px; font-weight:800; letter-spacing:1.5px; text-transform:uppercase; color:#f5d060; margin-bottom:6px; }
-.scarcity-timer{ font-size:28px; font-weight:900; color:#fff; letter-spacing:3px; font-variant-numeric:tabular-nums; }
-.scarcity-sub{ font-size:11px; color:rgba(255,255,255,.4); margin-top:4px; }
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4/3;
+      max-height: 42vh;
+      overflow: hidden;
+      background: #0a120a;
+    }
+    .hero-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .hero-placeholder {
+      width: 100%; height: 100%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      background: linear-gradient(180deg, #0d1a0d 0%, #060a06 100%);
+      font-size: 14px; color: #2ECC40; font-weight: 600;
+      letter-spacing: 1px; text-align: center; padding: 20px;
+      position: absolute; inset: 0;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(
+        180deg,
+        rgba(6,10,6,0.0) 0%,
+        rgba(6,10,6,0.0) 30%,
+        rgba(6,10,6,0.6) 55%,
+        rgba(6,10,6,0.95) 75%,
+        rgba(6,10,6,1.0) 100%
+      );
+      box-shadow: inset 25px 0 30px rgba(6,10,6,1), inset -25px 0 30px rgba(6,10,6,1);
+    }
+    .hero-glow {
+      display: none;
+    }
 
-.social-proof{ display:flex; align-items:center; gap:10px; background:rgba(201,162,39,.06); border:1px solid rgba(201,162,39,.15); border-radius:10px; padding:10px 14px; font-size:12px; color:rgba(255,255,255,.5); width:100%; }
-.social-proof strong{ color:#f5d060; }
+    /* ── BODY CONTENT ── */
+    .body {
+      padding: 0 18px 40px;
+      margin-top: -60px;
+      position: relative;
+      z-index: 2;
+    }
 
-/* STICKY CTA */
-.sticky-wrap{ position:fixed; bottom:0; left:0; right:0; z-index:200; padding:12px 16px 24px; background:linear-gradient(to top,rgba(0,0,0,1) 60%,transparent); }
-.cta-btn{ display:block; width:100%; max-width:480px; margin:0 auto; padding:20px 24px; background:linear-gradient(135deg,#c9a227,#f5d060); color:#000; font-size:18px; font-weight:900; text-decoration:none; border-radius:16px; letter-spacing:.3px; box-shadow:0 8px 32px rgba(201,162,39,.6); animation:pulseCta 1.8s ease-in-out infinite; text-align:center; touch-action:manipulation; }
-@keyframes pulseCta{
-  0%,100%{ box-shadow:0 8px 32px rgba(201,162,39,.5),0 0 0 0 rgba(245,208,96,.4); }
-  50%{ box-shadow:0 8px 50px rgba(201,162,39,.7),0 0 0 8px rgba(245,208,96,0); }
-}
-.cta-btn:active{ transform:scale(0.98); }
-.cta-sub{ text-align:center; font-size:11px; color:rgba(255,255,255,.3); margin-top:6px; max-width:480px; margin-left:auto; margin-right:auto; }
+    /* ── HEADLINE ── */
+    .headline {
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .headline .line1 {
+      font-size: clamp(30px, 8.5vw, 44px);
+      font-weight: 900;
+      font-style: italic;
+      text-transform: uppercase;
+      color: #fff;
+      display: block;
+      line-height: 1.0;
+    }
+    .headline .line2 {
+      font-size: clamp(32px, 9vw, 48px);
+      font-weight: 900;
+      font-style: italic;
+      text-transform: uppercase;
+      color: #2ECC40;
+      display: block;
+      line-height: 1.0;
+      text-shadow: 0 0 28px rgba(46,204,64,0.45);
+    }
+    .headline .line3 {
+      font-size: clamp(17px, 4.8vw, 24px);
+      font-weight: 900;
+      font-style: italic;
+      text-transform: uppercase;
+      color: #fff;
+      display: block;
+      line-height: 1.1;
+      margin-top: 4px;
+    }
 
-.disclaimer{ font-size:10px; color:rgba(255,255,255,.2); text-align:center; padding:0 8px; line-height:1.5; }
-</style>
+    /* ── SUBTITLE ── */
+    .subtitle {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      gap: 8px;
+      text-align: center;
+      font-size: 14px;
+      line-height: 1.6;
+      color: #ccc;
+      margin-bottom: 20px;
+      padding: 0 4px;
+    }
+    .subtitle .wpp-ic { flex-shrink: 0; margin-top: 1px; }
+    .subtitle .wpp-ic svg { width: 19px; height: 19px; display: block; }
+    .subtitle .hl { color: #2ECC40; font-weight: 600; }
+
+    /* ── CTA ROW ── */
+    .cta-row {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 20px;
+    }
+    .arrow-group {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      flex-shrink: 0;
+      animation: arrowBounce 1.4s ease-in-out infinite;
+    }
+    .arrow-group.flip { transform: scaleX(-1); animation: arrowBounceR 1.4s ease-in-out infinite; }
+    .arrow-group svg { width: 18px; height: 18px; fill: #2ECC40; display: block; }
+    @keyframes arrowBounce {
+      0%,100% { transform: translateX(0); }
+      50% { transform: translateX(-5px); }
+    }
+    @keyframes arrowBounceR {
+      0%,100% { transform: scaleX(-1) translateX(0); }
+      50% { transform: scaleX(-1) translateX(-5px); }
+    }
+
+    .cta-btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      background: #2ECC40;
+      border-radius: 12px;
+      text-decoration: none;
+      color: #000;
+      cursor: pointer;
+      border: none;
+      position: relative;
+      overflow: hidden;
+      animation: ctaPulse 2s ease-in-out infinite;
+    }
+    @keyframes ctaPulse {
+      0%,100% { box-shadow: 0 0 18px rgba(46,204,64,0.5), 0 4px 28px rgba(46,204,64,0.3); }
+      50% { box-shadow: 0 0 38px rgba(46,204,64,0.85), 0 8px 44px rgba(46,204,64,0.55); }
+    }
+    .cta-btn::after {
+      content: '';
+      position: absolute; top: 0; left: -70%;
+      width: 45%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.35), transparent);
+      animation: ctaShine 2.8s ease-in-out infinite;
+    }
+    @keyframes ctaShine { 0%{left:-70%} 60%,100%{left:130%} }
+    .cta-btn:hover { animation: none; opacity: 0.92; }
+    .cta-btn:active { transform: scale(0.98); }
+
+    .wpp-bubble {
+      width: 46px; height: 46px;
+      background: rgba(0,0,0,0.12);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .wpp-bubble svg { width: 28px; height: 28px; }
+
+    .cta-texts { line-height: 1; }
+    .cta-main-text {
+      display: block;
+      font-size: 17px;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+      line-height: 1.15;
+    }
+    .cta-sub-text {
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      opacity: 0.65;
+      margin-top: 4px;
+    }
+
+    /* ── STATS BAR ── */
+    .stats {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .stat-card {
+      flex: 1;
+      background: #0c140c;
+      border: 1px solid rgba(46,204,64,0.15);
+      border-radius: 12px;
+      padding: 14px 6px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+    .stat-icon-box {
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .stat-icon-box svg {
+      width: 26px; height: 26px;
+      stroke: #2ECC40;
+      fill: none;
+      stroke-width: 1.7;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .stat-name {
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      color: #fff;
+      line-height: 1.25;
+      letter-spacing: 0.2px;
+    }
+    .stat-detail {
+      font-size: 9.5px;
+      color: #666;
+      line-height: 1.3;
+    }
+
+    /* ── SOCIAL PROOF ── */
+    .social {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 13px 15px;
+      background: #0c140c;
+      border: 1px solid rgba(46,204,64,0.1);
+      border-radius: 12px;
+    }
+    .av-stack {
+      display: flex;
+      flex-shrink: 0;
+    }
+    .av {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      border: 2px solid #060a06;
+      margin-left: -9px;
+      background: #182818;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 17px;
+    }
+    .av:first-child { margin-left: 0; }
+    .av img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+    .social-text { font-size: 13px; line-height: 1.5; color: #aaa; }
+    .social-text .stars { color: #f5c518; font-size: 14px; display: block; margin-bottom: 2px; letter-spacing: 1px; }
+    .social-text strong { color: #fff; }
+    .social-text .hl { color: #2ECC40; }
+  </style>
 </head>
 <body>
 <div class="page">
-  <span class="badge">🔮 Mago Tips · Exclusivo</span>
 
-  <div class="hero">
-    <div class="hero-odd">ODD 100</div>
-    <div class="hero-label">Super odd do dia</div>
+  <!-- BADGE TOPO -->
+  <div class="top-badge">
+    <div class="badge-pill">
+      <div class="badge-icon">
+        <svg viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 6.5l2.5 2.5 5.5-5.5" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      ACESSO 100%&nbsp;<span class="hl">GRATUITO</span>
+    </div>
   </div>
 
-  <p class="section-title">🔥 Jogos de hoje</p>
+  <!-- HERO -->
+  <div class="hero">
+    <img class="hero-img" src="1 (1).jpg" alt="MagoTips"
+      onerror="this.style.display='none'; document.querySelector('.hero-placeholder').style.display='flex'">
+    <div class="hero-placeholder" style="display:none;">
+      📷 Coloque sua foto aqui<br>
+      <small style="opacity:.5;margin-top:8px;font-size:10px;font-style:italic">Substitua "SUA_FOTO_AQUI.jpg"</small>
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-glow"></div>
+  </div>
 
-  <div style="width:100%;">
-    <div class="carousel-viewport">
-      <div class="carousel-track" id="track">
-        <!-- Jogo 1: Paquistão vs Afeganistão -->
-        <div class="match-card">
-          <div class="card-header">⚽ Amistosos Internacionais</div>
-          <div class="teams-row">
-            <div class="team-side"><div class="team-logo">🇵🇰</div><div class="team-name">Paquistão</div></div>
-            <div class="vs-text">VS</div>
-            <div class="team-side"><div class="team-logo">🇦🇫</div><div class="team-name">Afeganistão</div></div>
-          </div>
-          <div class="comp-row">Amistoso Internacional <span class="day-pill">13:00</span></div>
-          <div class="market-row"><div class="market-label">Mercado</div><div class="market-name">🔒 Palpite exclusivo</div></div>
-          <div class="odds-row">
-            <div class="odd-from"><div class="odd-from-label">De</div><div class="odd-from-val">1.78</div></div>
-            <div class="odd-arrow">»</div>
-            <div class="odd-to"><div class="odd-to-label">Para</div><div class="odd-to-val">100</div></div>
-          </div>
+  <!-- CORPO -->
+  <div class="body">
+
+    <!-- HEADLINE -->
+    <div class="headline">
+      <span class="line1">As Entradas Mais</span>
+      <span class="line2">Insanas do Dia</span>
+      <span class="line3">Direto no seu Telegram.</span>
+    </div>
+
+    <!-- SUBTITLE -->
+    <div class="subtitle">
+      <span class="wpp-ic">
+        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 2C6.477 2 2 6.477 2 12c0 1.89.525 3.66 1.438 5.168L2.5 21.5l4.532-1.382A9.45 9.45 0 0012 21.5c5.247 0 9.5-4.253 9.5-9.5S17.247 2.5 12 2.5z" stroke="#2ECC40" stroke-width="1.5"/>
+          <path d="M9.12 7.5c-.22-.49-.45-.5-.66-.51-.17-.01-.37-.01-.57-.01-.2 0-.52.07-.79.37-.27.3-1.04 1.01-1.04 2.47s1.06 2.87 1.21 3.07c.15.2 2.06 3.3 5.08 4.5.71.27 1.26.43 1.69.55.71.2 1.36.17 1.87.1.57-.08 1.76-.72 2.01-1.41.25-.69.25-1.28.17-1.41-.08-.12-.28-.2-.58-.34-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.34.22-.64.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.49-1.77-1.66-2.07-.17-.3-.02-.46.13-.61.13-.13.3-.34.45-.51.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.62-.92-2.21z" fill="#2ECC40"/>
+        </svg>
+      </span>
+      <span>Receba análises exclusivas, entradas <span class="hl">em tempo real</span> e aumente seus resultados.</span>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-row">
+      <div class="arrow-group">
+        <svg viewBox="0 0 10 14"><path d="M1 1l8 6-8 6" fill="#2ECC40"/></svg>
+        <svg viewBox="0 0 10 14"><path d="M1 1l8 6-8 6" fill="#2ECC40"/></svg>
+      </div>
+
+      <a class="cta-btn" href="https://t.me/+m9kzGu7glvNlZTQx" onclick="trackLead(event)">
+        <div class="wpp-bubble">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" fill="white"/>
+            <path d="M17.5 7.5l-2.3 10.5c-.17.76-.63.94-1.28.59l-3.5-2.58-1.69 1.63c-.19.19-.35.35-.71.35l.25-3.57 6.5-5.87c.28-.25-.06-.39-.44-.14L6.5 13.5 3.07 12.44c-.74-.23-.75-.74.15-1.09l13.18-5.08c.62-.23 1.16.14.1 1.23z" fill="#2ECC40"/>
+          </svg>
         </div>
-        <!-- Jogo 2: Portugal vs Nigéria -->
-        <div class="match-card">
-          <div class="card-header">⚽ Amistosos Internacionais</div>
-          <div class="teams-row">
-            <div class="team-side"><div class="team-logo">🇵🇹</div><div class="team-name">Portugal</div></div>
-            <div class="vs-text">VS</div>
-            <div class="team-side"><div class="team-logo">🇳🇬</div><div class="team-name">Nigéria</div></div>
-          </div>
-          <div class="comp-row">Amistoso Internacional <span class="day-pill">16:45</span></div>
-          <div class="market-row"><div class="market-label">Mercado</div><div class="market-name">🔒 Palpite exclusivo</div></div>
-          <div class="odds-row">
-            <div class="odd-from"><div class="odd-from-label">De</div><div class="odd-from-val">1.78</div></div>
-            <div class="odd-arrow">»</div>
-            <div class="odd-to"><div class="odd-to-label">Para</div><div class="odd-to-val">100</div></div>
-          </div>
+        <div class="cta-texts">
+          <span class="cta-main-text">Entrar no Telegram Agora</span>
+          <span class="cta-sub-text">🔒 Acesso Imediato</span>
         </div>
-        <!-- Jogo 3: Inglaterra vs Costa Rica -->
-        <div class="match-card">
-          <div class="card-header">⚽ Amistosos Internacionais</div>
-          <div class="teams-row">
-            <div class="team-side"><div class="team-logo">🏴󠁧󠁢󠁥󠁮󠁧󠁿</div><div class="team-name">Inglaterra</div></div>
-            <div class="vs-text">VS</div>
-            <div class="team-side"><div class="team-logo">🇨🇷</div><div class="team-name">Costa Rica</div></div>
-          </div>
-          <div class="comp-row">Amistoso Internacional <span class="day-pill">17:00</span></div>
-          <div class="market-row"><div class="market-label">Mercado</div><div class="market-name">🔒 Palpite exclusivo</div></div>
-          <div class="odds-row">
-            <div class="odd-from"><div class="odd-from-label">De</div><div class="odd-from-val">1.78</div></div>
-            <div class="odd-arrow">»</div>
-            <div class="odd-to"><div class="odd-to-label">Para</div><div class="odd-to-val">100</div></div>
-          </div>
-        </div>
-        <!-- Jogo 4: Bolívia vs Argélia -->
-        <div class="match-card">
-          <div class="card-header">⚽ Amistosos Internacionais</div>
-          <div class="teams-row">
-            <div class="team-side"><div class="team-logo">🇧🇴</div><div class="team-name">Bolívia</div></div>
-            <div class="vs-text">VS</div>
-            <div class="team-side"><div class="team-logo">🇩🇿</div><div class="team-name">Argélia</div></div>
-          </div>
-          <div class="comp-row">Amistoso Internacional <span class="day-pill" style="background:#e53935;color:#fff;">Hoje 21:00</span></div>
-          <div class="market-row"><div class="market-label">Mercado</div><div class="market-name">🔒 Palpite exclusivo</div></div>
-          <div class="odds-row">
-            <div class="odd-from"><div class="odd-from-label">De</div><div class="odd-from-val">1.78</div></div>
-            <div class="odd-arrow">»</div>
-            <div class="odd-to"><div class="odd-to-label">Para</div><div class="odd-to-val">100</div></div>
-          </div>
-        </div>
-        <!-- Jogo 5: Ceará vs Avaí -->
-        <div class="match-card">
-          <div class="card-header">⚽ Brasileirão Série B</div>
-          <div class="teams-row">
-            <div class="team-side"><div class="team-logo">⬛</div><div class="team-name">Ceará</div></div>
-            <div class="vs-text">VS</div>
-            <div class="team-side"><div class="team-logo">🔵</div><div class="team-name">Avaí</div></div>
-          </div>
-          <div class="comp-row">Série B · Rodada 12 <span class="day-pill">20:00</span></div>
-          <div class="market-row"><div class="market-label">Mercado</div><div class="market-name">🔒 Palpite exclusivo</div></div>
-          <div class="odds-row">
-            <div class="odd-from"><div class="odd-from-label">De</div><div class="odd-from-val">1.78</div></div>
-            <div class="odd-arrow">»</div>
-            <div class="odd-to"><div class="odd-to-label">Para</div><div class="odd-to-val">100</div></div>
-          </div>
-        </div>
-        <!-- Jogo 6: Goiás vs Grêmio Novorizontino -->
-        <div class="match-card">
-          <div class="card-header">⚽ Brasileirão Série B</div>
-          <div class="teams-row">
-            <div class="team-side"><div class="team-logo">💚</div><div class="team-name">Goiás</div></div>
-            <div class="vs-text">VS</div>
-            <div class="team-side"><div class="team-logo">🟡</div><div class="team-name">Grêmio Novo.</div></div>
-          </div>
-          <div class="comp-row">Série B · Rodada 12 <span class="day-pill">20:00</span></div>
-          <div class="market-row"><div class="market-label">Mercado</div><div class="market-name">🔒 Palpite exclusivo</div></div>
-          <div class="odds-row">
-            <div class="odd-from"><div class="odd-from-label">De</div><div class="odd-from-val">1.78</div></div>
-            <div class="odd-arrow">»</div>
-            <div class="odd-to"><div class="odd-to-label">Para</div><div class="odd-to-val">100</div></div>
-          </div>
-        </div>
-        <!-- Jogo 7: Sport Recife vs Athletic SJDR -->
-        <div class="match-card">
-          <div class="card-header">⚽ Brasileirão Série B</div>
-          <div class="teams-row">
-            <div class="team-side"><div class="team-logo">🔴⚫</div><div class="team-name">Sport Recife</div></div>
-            <div class="vs-text">VS</div>
-            <div class="team-side"><div class="team-logo">⚫🔴</div><div class="team-name">Athletic SJDR</div></div>
-          </div>
-          <div class="comp-row">Série B · Rodada 12 <span class="day-pill" style="background:#e53935;color:#fff;">Hoje 21:00</span></div>
-          <div class="market-row"><div class="market-label">Mercado</div><div class="market-name">🔒 Palpite exclusivo</div></div>
-          <div class="odds-row">
-            <div class="odd-from"><div class="odd-from-label">De</div><div class="odd-from-val">1.78</div></div>
-            <div class="odd-arrow">»</div>
-            <div class="odd-to"><div class="odd-to-label">Para</div><div class="odd-to-val">100</div></div>
-          </div>
-        </div>
+      </a>
+
+      <div class="arrow-group flip">
+        <svg viewBox="0 0 10 14"><path d="M1 1l8 6-8 6" fill="#2ECC40"/></svg>
+        <svg viewBox="0 0 10 14"><path d="M1 1l8 6-8 6" fill="#2ECC40"/></svg>
       </div>
     </div>
-    <div class="carousel-dots" id="dots"></div>
-  </div>
 
-  <div class="scarcity-box">
-    <div class="scarcity-title">⏰ Vagas limitadas</div>
-    <div class="scarcity-timer" id="timer">14:59</div>
-    <div class="scarcity-sub">Após esse tempo o acesso pode ser fechado</div>
-  </div>
+    <!-- STATS -->
+    <div class="stats">
+      <div class="stat-card">
+        <div class="stat-icon-box">
+          <svg viewBox="0 0 24 24">
+            <path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V6L12 2z"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+        </div>
+        <div class="stat-name">100%<br>Gratuito</div>
+        <div class="stat-detail">Acesso livre</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon-box">
+          <svg viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M12 7v5l3 3"/>
+          </svg>
+        </div>
+        <div class="stat-name">Análises<br>Diárias</div>
+        <div class="stat-detail">Entradas em tempo real</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon-box">
+          <svg viewBox="0 0 24 24">
+            <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>
+          </svg>
+        </div>
+        <div class="stat-name">+Milhares</div>
+        <div class="stat-detail">Acompanhando</div>
+      </div>
+    </div>
 
-  <div class="social-proof">
-    <span>🔥</span>
-    <div><strong>+4.200 membros</strong> já recebem os palpites do Mago</div>
-  </div>
+    <!-- SOCIAL PROOF -->
+    <div class="social">
+      <div class="av-stack">
+        <div class="av"><img src="Gemini_Generated_Image_lgqedhlgqedhlgqe.png" alt=""></div>
+        <div class="av"><img src="Gemini_Generated_Image_lgqedhlgqedhlgqe (1).png" alt=""></div>
+        <div class="av"><img src="Gemini_Generated_Image_lgqedhlgqedhlgqe (2).png" alt=""></div>
+        <div class="av"><img src="Gemini_Generated_Image_lgqedhlgqedhlgqe (3).png" alt=""></div>
+        <div class="av"><img src="Gemini_Generated_Image_lgqedhlgqedhlgqe (4).png" alt=""></div>
+      </div>
+      <div class="social-text">
+        <span class="stars">★★★★★</span>
+        <strong>+5.000 pessoas</strong> recebendo e <span class="hl">lucrando</span> todos os dias!
+      </div>
+    </div>
 
-  <p class="disclaimer">
-    Apostas esportivas para maiores de 18 anos.<br/>
-    Jogue com responsabilidade.
-  </p>
+  </div>
 </div>
-
-<!-- STICKY CTA -->
-<div class="sticky-wrap">
-  <a class="cta-btn" href="https://t.me/+m9kzGu7glvNlZTQx"
-     onclick="fbq('track','Lead'); fbq('track','CompleteRegistration');">
-    ⚡ ENTRAR NO GRUPO GRÁTIS
-  </a>
-  <p class="cta-sub">🔒 Grupo gratuito · Acesso imediato</p>
-</div>
-
-<script>
-// Carousel
-const track = document.getElementById('track');
-const dotsEl = document.getElementById('dots');
-const cards = track.querySelectorAll('.match-card');
-let cur = 0;
-
-cards.forEach((_,i) => {
-  const d = document.createElement('div');
-  d.className = 'dot' + (i===0?' active':'');
-  d.onclick = () => goTo(i);
-  dotsEl.appendChild(d);
-});
-
-function goTo(n) {
-  cur = n;
-  track.style.transform = `translateX(-${cur*100}%)`;
-  dotsEl.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active',i===cur));
-}
-
-let startX = 0;
-track.addEventListener('touchstart', e => startX = e.touches[0].clientX, {passive:true});
-track.addEventListener('touchend', e => {
-  const dx = e.changedTouches[0].clientX - startX;
-  if (Math.abs(dx) > 40) goTo(Math.max(0, Math.min(cards.length-1, cur + (dx<0?1:-1))));
-}, {passive:true});
-
-setInterval(() => goTo((cur+1) % cards.length), 4000);
-
-// Countdown
-const KEY = '_rm_cd';
-let end = parseInt(sessionStorage.getItem(KEY)||'0');
-if (!end || end < Date.now()) { end = Date.now()+15*60*1000; sessionStorage.setItem(KEY,end); }
-const timerEl = document.getElementById('timer');
-function tick() {
-  const diff = Math.max(0, end-Date.now());
-  const m = Math.floor(diff/60000), s = Math.floor((diff%60000)/1000);
-  timerEl.textContent = String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
-  if (diff>0) requestAnimationFrame(tick); else timerEl.textContent='00:00';
-}
-tick();
-</script>
 </body>
 </html>
