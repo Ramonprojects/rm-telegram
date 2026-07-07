@@ -3,7 +3,7 @@
   <head>                                                                                                                                                                                                    
     <meta charset="UTF-8"/>                                                                                                                                                                                 
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>                                                                                            
-    <title>MagoTips — Entre Antes Que Feche Para Novos Membros</title>
+    <title>MagoTips — Entre Antes Que Feche Para Novos Membros</title>                                                                                                                                      
                                                                                                                                                                                                             
     <script>                                                                                                                                                                                                
     !function(f,b,e,v,n,t,s)                                                                                                                                                                                
@@ -11,117 +11,173 @@
     n.callMethod.apply(n,arguments):n.queue.push(arguments)};                                                                                                                                               
     if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';                                                                                                                                               
     n.queue=[];t=b.createElement(e);t.async=!0;                                                                                                                                                             
-    t.src=v;s=b.getElementsByTagName(e)[0];                                                                                                                                                                 
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');                                                                                                                                                      
-    fbq('init', '953058917590545');                                                                                                                                                                       
-    fbq('track', 'PageView');                                                                                                                                                                               
+    t.src=v;s=b.getElementsByTagName(e)[0];   
+    s.parentNode.insertBefore(t,s)}(window, document,'script',                                                                                                                                              
+    'https://connect.facebook.net/en_US/fbevents.js');                                                                                                                                                    
+    fbq('init', '953058917590545');                                                                                                                                                                         
+    fbq('track', 'PageView');                                                                                                                                                                             
+                                                                                                                                                                                                            
+    const REDIRECT_URL = 'https://smartico-dash.up.railway.app/track/34c58208-a263-4454-bbc4-6b736e47d42b/redirect?utm_campaign=esportiva';                                                                 
+                                          
+    function openInDefaultBrowser(url) {                                                                                                                                                                    
+      const ua = navigator.userAgent;                                                                                                                                                                       
+      const isAndroid = /Android/i.test(ua);                                                                                                                                                                
+      const isIOS = /iPhone|iPad|iPod/i.test(ua);                                                                                                                                                           
+      const isInstagram = /Instagram/i.test(ua);                                                                                                                                                          
+      const isFacebook = /FBAN|FBAV/i.test(ua);                                                                                                                                                             
+      const isInApp = isInstagram || isFacebook;
+                                                                                                                                                                                                            
+      if (isInApp && isAndroid) {                                                                                                                                                                           
+        // Android: força abertura no Chrome via intent://                                                                                                                                                  
+        const intentUrl = 'intent://' + url.replace(/^https?:\/\//, '') +                                                                                                                                   
+          '#Intent;scheme=https;package=com.android.chrome;' +                                                                                                                                              
+          'S.browser_fallback_url=' + encodeURIComponent(url) + ';end';                                                                                                                                     
+        window.location.href = intentUrl;                                                                                                                                                                 
+        return;                                                                                                                                                                                             
+      }
+                                                                                                                                                                                                            
+      if (isInApp && isIOS) {                                                                                                                                                                             
+        // iOS: mostra overlay com instrução (Instagram bloqueia abertura externa)                                                                                                                          
+        const overlay = document.createElement('div');                                                                                                                                                    
+        overlay.id = 'insta-overlay';     
+        overlay.style.cssText = [             
+          'position:fixed;inset:0;z-index:99999',                                                                                                                                                           
+          'background:rgba(0,0,0,0.92)',      
+          'display:flex;flex-direction:column',                                                                                                                                                             
+          'align-items:center;justify-content:center',                                                                                                                                                    
+          'padding:32px;text-align:center',                                                                                                                                                                 
+          'font-family:Montserrat,sans-serif'                                                                                                                                                             
+        ].join(';');                                                                                                                                                                                        
+        overlay.innerHTML = `                                                                                                                                                                             
+          <div style="font-size:48px;margin-bottom:16px">🌐</div>                                                                                                                                           
+          <p style="color:#fff;font-size:19px;font-weight:900;margin-bottom:10px;text-transform:uppercase">                                                                                                 
+            Abrir no Navegador                
+          </p>                                                                                                                                                                                              
+          <p style="color:#aaa;font-size:14px;line-height:1.7;margin-bottom:28px">                                                                                                                          
+            Toque nos <strong style="color:#fff">3 pontinhos</strong> no canto<br>                                                                                                                          
+            inferior direito e selecione<br>                                                                                                                                                                
+            <strong style="color:#229ED9">"Abrir no navegador"</strong>                                                                                                                                     
+          </p>                                                                                                                                                                                              
+          <button onclick="document.getElementById('insta-overlay').remove()"
+            style="background:#229ED9;color:#000;border:none;padding:14px 36px;                                                                                                                             
+            border-radius:10px;font-size:15px;font-weight:900;                                                                                                                                              
+            font-family:Montserrat,sans-serif;cursor:pointer;text-transform:uppercase">
+            Entendi                                                                                                                                                                                         
+          </button>                                                                                                                                                                                       
+        `;                                                                                                                                                                                                  
+        document.body.appendChild(overlay);                                                                                                                                                                 
+        return;                                                                                                                                                                                             
+      }                                                                                                                                                                                                     
                                                                                                                                                                                                           
-    async function trackLead(e) {                                                                                                                                                                           
+      // Fora de in-app browser: abre normalmente
+      window.location.href = url;         
+    }
+                                                                                                                                                                                                            
+    async function trackLead(e) {             
       e.preventDefault();                                                                                                                                                                                   
-      const eventId = 'cr_' + Date.now();
+      const eventId = 'cr_' + Date.now();                                                                                                                                                                 
       fbq('track', 'CompleteRegistration', {}, { eventID: eventId });                                                                                                                                       
-      try {                                                                                                                                                                                               
+      try {                                   
         await fetch('https://api-ramon-production.up.railway.app/api/lead', {                                                                                                                               
-          method: 'POST',                                                                                                                                                                                   
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({                                                                                                                                                                            
+          method: 'POST',                                                                                                                                                                                 
+          headers: { 'Content-Type': 'application/json' },                                                                                                                                                  
+          body: JSON.stringify({              
             fbp: document.cookie.match(/_fbp=([^;]+)/)?.[1] || null,                                                                                                                                        
-            fbc: document.cookie.match(/_fbc=([^;]+)/)?.[1] || null,                                                                                                                                        
+            fbc: document.cookie.match(/_fbc=([^;]+)/)?.[1] || null,                                                                                                                                      
             userAgent: navigator.userAgent,                                                                                                                                                                 
             eventId: eventId                                                                                                                                                                              
           })                                                                                                                                                                                                
-        });
+        });                                                                                                                                                                                                 
       } catch(err) {}                                                                                                                                                                                       
-      window.location.href = 'https://smartico-dash.up.railway.app/track/34c58208-a263-4454-bbc4-6b736e47d42b/redirect?utm_campaign=esportiva';                                                           
-    }                                                                                                                                                                                                       
-    </script>                                                                                                                                                                                             
-
-    <!-- Microsoft Clarity -->                                                                                                                                                                              
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){                                                                                                                                                                           
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};                                                                                                                                   
+      openInDefaultBrowser(REDIRECT_URL);                                                                                                                                                                   
+    }                                                                                                                                                                                                     
+    </script>
+                                                                                                                                                                                                            
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">                                                                                                                                                                         
+        (function(c,l,a,r,i,t,y){                                                                                                                                                                         
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
             t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
             y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);                                                                                                                                  
         })(window, document, "clarity", "script", "xit7yz32ph");
     </script>                                                                                                                                                                                               
-                                                                                                                                                                                                            
+                                                                                                                                                                                                          
     <link rel="preconnect" href="https://fonts.googleapis.com">                                                                                                                                             
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>                                                                                                                                    
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,700;0,800;0,900;1,700;1,800;1,900&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">                        
-                                                                                                                                                                                                          
-    <style>                               
+                                                                                                                                                                                                            
+    <style>                                                                                                                                                                                               
       *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }                                                                                                                             
                                                                                                                                                                                                             
-      html, body {                                                                                                                                                                                          
+      html, body {                        
         background: #060b14;                                                                                                                                                                                
         color: #fff;                                                                                                                                                                                        
         font-family: 'Montserrat', sans-serif;
         min-height: 100%;                                                                                                                                                                                   
         overflow-x: hidden;                                                                                                                                                                                 
-      }                                   
+      }                                       
                                                                                                                                                                                                             
-      .page {                                                                                                                                                                                               
-        max-width: 480px;
-        margin: 0 auto;                                                                                                                                                                                     
-        background: #060b14;                                                                                                                                                                              
-        min-height: 100vh;
-      }                                                                                                                                                                                                     
-   
+      .page {                                                                                                                                                                                             
+        max-width: 480px;                                                                                                                                                                                   
+        margin: 0 auto;
+        background: #060b14;                                                                                                                                                                                
+        min-height: 100vh;                                                                                                                                                                                
+      }                                   
+
       /* ── TOP BADGE ── */                                                                                                                                                                                 
-      .top-badge {                                                                                                                                                                                        
-        display: flex;
+      .top-badge {                        
+        display: flex;                                                                                                                                                                                      
         align-items: center;                                                                                                                                                                                
         justify-content: center;
         padding: 14px 20px;                                                                                                                                                                                 
         background: #060b14;                                                                                                                                                                              
-      }
-      .badge-pill {                                                                                                                                                                                         
-        display: inline-flex;                 
-        align-items: center;                                                                                                                                                                                
-        gap: 8px;                                                                                                                                                                                         
-        border: 1.5px solid rgba(255,255,255,0.25);                                                                                                                                                         
-        border-radius: 100px;                 
-        padding: 8px 20px;                                                                                                                                                                                  
-        font-size: 13px;                                                                                                                                                                                  
+      }                                   
+      .badge-pill {
+        display: inline-flex;                                                                                                                                                                               
+        align-items: center;                  
+        gap: 8px;                                                                                                                                                                                           
+        border: 1.5px solid rgba(255,255,255,0.25);                                                                                                                                                       
+        border-radius: 100px;                                                                                                                                                                               
+        padding: 8px 20px;                
+        font-size: 13px;                                                                                                                                                                                    
         font-weight: 700;                                                                                                                                                                                   
-        letter-spacing: 1px;              
+        letter-spacing: 1px;                  
         text-transform: uppercase;                                                                                                                                                                          
-        color: #fff;                                                                                                                                                                                        
-      }
-      .badge-icon {                                                                                                                                                                                         
-        width: 18px; height: 18px;                                                                                                                                                                        
-        background: #229ED9;              
-        border-radius: 50%;
-        display: flex; align-items: center; justify-content: center;                                                                                                                                        
-        flex-shrink: 0;                   
+        color: #fff;                                                                                                                                                                                      
       }                                                                                                                                                                                                     
+      .badge-icon {
+        width: 18px; height: 18px;                                                                                                                                                                          
+        background: #229ED9;                                                                                                                                                                              
+        border-radius: 50%;               
+        display: flex; align-items: center; justify-content: center;
+        flex-shrink: 0;                                                                                                                                                                                     
+      }                                       
       .badge-icon svg { width: 11px; height: 11px; }                                                                                                                                                        
-      .badge-pill .hl { color: #229ED9; }     
+      .badge-pill .hl { color: #229ED9; }                                                                                                                                                                 
                                                                                                                                                                                                             
-      /* ── HERO ── */                                                                                                                                                                                    
+      /* ── HERO ── */                    
       .hero {                                                                                                                                                                                               
-        position: relative;
-        width: 100%;                                                                                                                                                                                        
-        aspect-ratio: 4/3;                                                                                                                                                                                
-        max-height: 42vh;                                                                                                                                                                                   
-        overflow: hidden;                                                                                                                                                                                 
-        background: #060b14;              
-      }
-      .hero-img {                                                                                                                                                                                           
+        position: relative;                                                                                                                                                                                 
         width: 100%;
-        height: 100%;                                                                                                                                                                                       
-        object-fit: cover;                                                                                                                                                                                
-        object-position: center top;
-        display: block;                                                                                                                                                                                     
-      }
-      .hero-placeholder {                                                                                                                                                                                   
-        width: 100%; height: 100%;                                                                                                                                                                        
+        aspect-ratio: 4/3;                                                                                                                                                                                  
+        max-height: 42vh;                                                                                                                                                                                 
+        overflow: hidden;                 
+        background: #060b14;
+      }                                                                                                                                                                                                     
+      .hero-img {
+        width: 100%;                                                                                                                                                                                        
+        height: 100%;                                                                                                                                                                                     
+        object-fit: cover;
+        object-position: center top;                                                                                                                                                                        
+        display: block;
+      }                                                                                                                                                                                                     
+      .hero-placeholder {                                                                                                                                                                                 
+        width: 100%; height: 100%;        
         display: flex; flex-direction: column;
-        align-items: center; justify-content: center;
-        background: linear-gradient(180deg, #060e1a 0%, #060b14 100%);                                                                                                                                      
-        font-size: 14px; color: #229ED9; font-weight: 600;
-        letter-spacing: 1px; text-align: center; padding: 20px;                                                                                                                                             
+        align-items: center; justify-content: center;                                                                                                                                                       
+        background: linear-gradient(180deg, #060e1a 0%, #060b14 100%);
+        font-size: 14px; color: #229ED9; font-weight: 600;                                                                                                                                                  
+        letter-spacing: 1px; text-align: center; padding: 20px;                                                                                                                                           
         position: absolute; inset: 0;                                                                                                                                                                       
       }                                       
       .hero-overlay {                                                                                                                                                                                       
@@ -173,43 +229,43 @@
       .headline .line3 {                                                                                                                                                                                  
         font-size: clamp(17px, 4.8vw, 24px);  
         font-weight: 900;                                                                                                                                                                                   
-        font-style: italic;
+        font-style: italic;                   
         text-transform: uppercase;                                                                                                                                                                          
         color: #fff;                                                                                                                                                                                      
         display: block;                                                                                                                                                                                     
-        line-height: 1.1;                                                                                                                                                                                   
-        margin-top: 4px;
-      }                                                                                                                                                                                                     
-                                                                                                                                                                                                          
-      /* ── SUBTITLE ── */                
-      .subtitle {
-        display: flex;                                                                                                                                                                                      
-        align-items: flex-start;
-        justify-content: center;                                                                                                                                                                            
-        gap: 8px;                                                                                                                                                                                         
-        text-align: center;                   
-        font-size: 14px;                  
-        line-height: 1.6;
-        color: #ccc;                                                                                                                                                                                        
-        margin-bottom: 20px;
-        padding: 0 4px;                                                                                                                                                                                     
+        line-height: 1.1;                                                                                                                                                                                 
+        margin-top: 4px;                                                                                                                                                                                    
       }                                                                                                                                                                                                   
+                                          
+      /* ── SUBTITLE ── */
+      .subtitle {                                                                                                                                                                                           
+        display: flex;
+        align-items: flex-start;                                                                                                                                                                            
+        justify-content: center;                                                                                                                                                                          
+        gap: 8px;                             
+        text-align: center;               
+        font-size: 14px;
+        line-height: 1.6;                                                                                                                                                                                   
+        color: #ccc;                          
+        margin-bottom: 20px;                                                                                                                                                                                
+        padding: 0 4px;                                                                                                                                                                                   
+      }                                                                                                                                                                                                     
       .subtitle .wpp-ic { flex-shrink: 0; margin-top: 1px; }
       .subtitle .wpp-ic svg { width: 19px; height: 19px; display: block; }                                                                                                                                  
-      .subtitle .hl { color: #229ED9; font-weight: 600; }
-                                                                                                                                                                                                            
+      .subtitle .hl { color: #229ED9; font-weight: 600; }                                                                                                                                                 
+                                              
       /* ── CTA ROW ── */                                                                                                                                                                                   
-      .cta-row {                                                                                                                                                                                            
+      .cta-row {
         display: flex;                                                                                                                                                                                      
-        align-items: center;                                                                                                                                                                                
+        align-items: center;                                                                                                                                                                              
         gap: 6px;                                                                                                                                                                                           
         margin-bottom: 20px;                                                                                                                                                                              
-      }                                   
-      .arrow-group {
-        display: flex;                                                                                                                                                                                      
-        flex-direction: column;
-        gap: 2px;                                                                                                                                                                                           
-        flex-shrink: 0;                                                                                                                                                                                   
+      }
+      .arrow-group {                                                                                                                                                                                        
+        display: flex;
+        flex-direction: column;                                                                                                                                                                             
+        gap: 2px;                                                                                                                                                                                         
+        flex-shrink: 0;                   
         animation: arrowBounce 1.4s ease-in-out infinite;
       }                                                                                                                                                                                                     
       .arrow-group.flip { transform: scaleX(-1); animation: arrowBounceR 1.4s ease-in-out infinite; }
@@ -243,7 +299,7 @@
         0%,100% { box-shadow: 0 0 18px rgba(34,158,217,0.5), 0 4px 28px rgba(34,158,217,0.3); }                                                                                                             
         50% { box-shadow: 0 0 38px rgba(34,158,217,0.85), 0 8px 44px rgba(34,158,217,0.55); }
       }                                                                                                                                                                                                     
-      .cta-btn::after {                                                                                                                                                                                     
+      .cta-btn::after {                                                                                                                                                                                   
         content: '';                                                                                                                                                                                        
         position: absolute; top: 0; left: -70%;                                                                                                                                                             
         width: 45%; height: 100%;                                                                                                                                                                           
@@ -264,100 +320,100 @@
       .wpp-bubble svg { width: 28px; height: 28px; }
                                                                                                                                                                                                             
       .cta-texts { line-height: 1; }                                                                                                                                                                      
-      .cta-main-text {                    
-        display: block;                                                                                                                                                                                     
+      .cta-main-text {                                                                                                                                                                                      
+        display: block;
         font-size: 17px;                                                                                                                                                                                    
-        font-weight: 900;                                                                                                                                                                                   
+        font-weight: 900;                                                                                                                                                                                 
         text-transform: uppercase;                                                                                                                                                                          
         letter-spacing: 0.3px;                                                                                                                                                                            
         line-height: 1.15;                                                                                                                                                                                  
-      }
+      }                                       
       .cta-sub-text {                                                                                                                                                                                       
         display: flex;                                                                                                                                                                                    
-        align-items: center;
-        gap: 3px;                                                                                                                                                                                           
-        font-size: 11px;
-        font-weight: 700;                                                                                                                                                                                   
-        text-transform: uppercase;                                                                                                                                                                        
+        align-items: center;                                                                                                                                                                                
+        gap: 3px;
+        font-size: 11px;                                                                                                                                                                                    
+        font-weight: 700;                                                                                                                                                                                 
+        text-transform: uppercase;        
         letter-spacing: 0.5px;
         opacity: 0.65;                                                                                                                                                                                      
-        margin-top: 4px;
+        margin-top: 4px;                      
       }                                                                                                                                                                                                     
                                                                                                                                                                                                           
-      /* ── STATS BAR ── */
-      .stats {                                                                                                                                                                                              
-        display: flex;
-        gap: 8px;                                                                                                                                                                                           
-        margin-bottom: 14px;                                                                                                                                                                              
-      }
-      .stat-card {                                                                                                                                                                                          
-        flex: 1;
-        background: #080f1a;                                                                                                                                                                                
-        border: 1px solid rgba(34,158,217,0.15);                                                                                                                                                          
-        border-radius: 12px;              
-        padding: 14px 6px;                    
+      /* ── STATS BAR ── */                                                                                                                                                                                 
+      .stats {
+        display: flex;                                                                                                                                                                                      
+        gap: 8px;                                                                                                                                                                                         
+        margin-bottom: 14px;
+      }                                                                                                                                                                                                     
+      .stat-card {
+        flex: 1;                                                                                                                                                                                            
+        background: #080f1a;                                                                                                                                                                              
+        border: 1px solid rgba(34,158,217,0.15);
+        border-radius: 12px;                  
+        padding: 14px 6px;                
         text-align: center;                                                                                                                                                                                 
-        display: flex;
+        display: flex;                                                                                                                                                                                      
         flex-direction: column;                                                                                                                                                                             
-        align-items: center;                                                                                                                                                                              
-        gap: 5px;                                                                                                                                                                                           
-      }                                                                                                                                                                                                   
-      .stat-icon-box {                                                                                                                                                                                      
-        width: 34px; height: 34px;
-        display: flex; align-items: center; justify-content: center;                                                                                                                                        
-      }                                                                                                                                                                                                   
-      .stat-icon-box svg {
-        width: 26px; height: 26px;                                                                                                                                                                          
-        stroke: #229ED9;                      
-        fill: none;                                                                                                                                                                                         
-        stroke-width: 1.7;                                                                                                                                                                                
-        stroke-linecap: round;                                                                                                                                                                              
-        stroke-linejoin: round;               
+        align-items: center;                                                                                                                                                                                
+        gap: 5px;                                                                                                                                                                                         
       }                                                                                                                                                                                                     
-      .stat-name {                                                                                                                                                                                        
-        font-size: 11px;                                                                                                                                                                                    
-        font-weight: 800;
-        text-transform: uppercase;                                                                                                                                                                          
-        color: #fff;                                                                                                                                                                                      
-        line-height: 1.25;
-        letter-spacing: 0.2px;                                                                                                                                                                              
-      }                                       
-      .stat-detail {                                                                                                                                                                                        
-        font-size: 9.5px;                                                                                                                                                                                 
+      .stat-icon-box {
+        width: 34px; height: 34px;                                                                                                                                                                          
+        display: flex; align-items: center; justify-content: center;                                                                                                                                      
+      }
+      .stat-icon-box svg {                                                                                                                                                                                  
+        width: 26px; height: 26px;            
+        stroke: #229ED9;                                                                                                                                                                                    
+        fill: none;                                                                                                                                                                                       
+        stroke-width: 1.7;                                                                                                                                                                                  
+        stroke-linecap: round;                
+        stroke-linejoin: round;                                                                                                                                                                             
+      }                                                                                                                                                                                                   
+      .stat-name {                                                                                                                                                                                          
+        font-size: 11px;
+        font-weight: 800;                                                                                                                                                                                   
+        text-transform: uppercase;                                                                                                                                                                        
+        color: #fff;
+        line-height: 1.25;                                                                                                                                                                                  
+        letter-spacing: 0.2px;
+      }                                                                                                                                                                                                     
+      .stat-detail {                                                                                                                                                                                      
+        font-size: 9.5px;
         color: #666;                                                                                                                                                                                        
-        line-height: 1.3;
+        line-height: 1.3;                     
       }                                                                                                                                                                                                     
                                                                                                                                                                                                           
-      /* ── SOCIAL PROOF ── */
-      .social {                                                                                                                                                                                             
-        display: flex;
-        align-items: center;                                                                                                                                                                                
-        gap: 12px;                                                                                                                                                                                        
-        padding: 13px 15px;                   
-        background: #080f1a;              
-        border: 1px solid rgba(34,158,217,0.1);
-        border-radius: 12px;                                                                                                                                                                                
-      }                                   
-      .av-stack {                                                                                                                                                                                           
+      /* ── SOCIAL PROOF ── */                                                                                                                                                                              
+      .social {
+        display: flex;                                                                                                                                                                                      
+        align-items: center;                                                                                                                                                                              
+        gap: 12px;                            
+        padding: 13px 15px;               
+        background: #080f1a;
+        border: 1px solid rgba(34,158,217,0.1);                                                                                                                                                             
+        border-radius: 12px;                  
+      }                                                                                                                                                                                                     
+      .av-stack {                                                                                                                                                                                         
         display: flex;                                                                                                                                                                                      
         flex-shrink: 0;
       }                                                                                                                                                                                                     
       .av {                                                                                                                                                                                               
         width: 36px; height: 36px;
         border-radius: 50%;                                                                                                                                                                                 
-        border: 2px solid #060b14;
+        border: 2px solid #060b14;            
         margin-left: -9px;                                                                                                                                                                                  
         background: #0d1b2a;                                                                                                                                                                              
-        overflow: hidden;                     
-        display: flex; align-items: center; justify-content: center;                                                                                                                                        
-        font-size: 17px;
-      }                                                                                                                                                                                                     
-      .av:first-child { margin-left: 0; }                                                                                                                                                                 
+        overflow: hidden;                                                                                                                                                                                   
+        display: flex; align-items: center; justify-content: center;
+        font-size: 17px;                                                                                                                                                                                    
+      }                                                                                                                                                                                                   
+      .av:first-child { margin-left: 0; }                                                                                                                                                                   
       .av img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }                                                                                                                         
-      .social-text { font-size: 13px; line-height: 1.5; color: #aaa; }                                                                                                                                      
-      .social-text .stars { color: #f5c518; font-size: 14px; display: block; margin-bottom: 2px; letter-spacing: 1px; }
+      .social-text { font-size: 13px; line-height: 1.5; color: #aaa; }
+      .social-text .stars { color: #f5c518; font-size: 14px; display: block; margin-bottom: 2px; letter-spacing: 1px; }                                                                                     
       .social-text strong { color: #fff; }                                                                                                                                                                  
-      .social-text .hl { color: #229ED9; }                                                                                                                                                                  
+      .social-text .hl { color: #229ED9; }
     </style>                                                                                                                                                                                                
   </head>                                                                                                                                                                                                   
   <body>                                                                                                                                                                                                    
@@ -379,8 +435,8 @@
     <div class="hero">
       <img class="hero-img" src="1 (1).jpg" alt="MagoTips"                                                                                                                                                  
         onerror="this.style.display='none'; document.querySelector('.hero-placeholder').style.display='flex'">                                                                                            
-      <div class="hero-placeholder" style="display:none;">                                                                                                                                                  
-        📷 Coloque sua foto aqui<br>                                                                                                                                                                      
+      <div class="hero-placeholder" style="display:none;">
+        📷 Coloque sua foto aqui<br>      
         <small style="opacity:.5;margin-top:8px;font-size:10px;font-style:italic">Substitua "SUA_FOTO_AQUI.jpg"</small>                                                                                     
       </div>                                                                                                                                                                                                
       <div class="hero-overlay"></div>                                                                                                                                                                      
@@ -416,7 +472,7 @@
           <svg viewBox="0 0 10 14"><path d="M1 1l8 6-8 6" fill="#229ED9"/></svg>                                                                                                                          
         </div>                                
                                           
-        <a class="cta-btn" href="https://smartico-dash.up.railway.app/track/34c58208-a263-4454-bbc4-6b736e47d42b/redirect?utm_campaign=esportiva" onclick="trackLead(event)">                               
+        <a class="cta-btn" href="javascript:void(0)" onclick="trackLead(event)">                                                                                                                            
           <div class="wpp-bubble">                                                                                                                                                                          
             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">                                                                                                                        
               <path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" fill="white"/>                                                                                              
@@ -429,46 +485,46 @@
             <span class="cta-sub-text">⚠️  Pode Fechar a Qualquer Hora</span>                                                                                                                                
           </div>                                                                                                                                                                                          
         </a>                                                                                                                                                                                                
-                                              
+   
         <div class="arrow-group flip">                                                                                                                                                                      
           <svg viewBox="0 0 10 14"><path d="M1 1l8 6-8 6" fill="#229ED9"/></svg>                                                                                                                          
           <svg viewBox="0 0 10 14"><path d="M1 1l8 6-8 6" fill="#229ED9"/></svg>                                                                                                                            
-        </div>                                                                                                                                                                                            
-      </div>                                                                                                                                                                                                
-                                                                                                                                                                                                            
-      <!-- STATS -->                      
-      <div class="stats">                                                                                                                                                                                   
-        <div class="stat-card">                                                                                                                                                                             
-          <div class="stat-icon-box">
-            <svg viewBox="0 0 24 24">                                                                                                                                                                       
-              <path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V6L12 2z"/>                                                                                                          
-              <path d="M9 12l2 2 4-4"/>       
-            </svg>                            
-          </div>                                                                                                                                                                                            
-          <div class="stat-name">Vagas<br>Esgotando</div>                                                                                                                                                   
-          <div class="stat-detail">Corre antes de fechar</div>                                                                                                                                              
         </div>                                                                                                                                                                                              
+      </div>                              
+                                                                                                                                                                                                            
+      <!-- STATS -->                                                                                                                                                                                        
+      <div class="stats">
         <div class="stat-card">                                                                                                                                                                             
-          <div class="stat-icon-box">                                                                                                                                                                       
+          <div class="stat-icon-box">                                                                                                                                                                     
             <svg viewBox="0 0 24 24">
-              <circle cx="12" cy="12" r="9"/>                                                                                                                                                               
-              <path d="M12 7v5l3 3"/>                                                                                                                                                                     
+              <path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11.35C16.5 22.15 20 17.25 20 12V6L12 2z"/>                                                                                                            
+              <path d="M9 12l2 2 4-4"/>       
             </svg>                                                                                                                                                                                          
           </div>                                                                                                                                                                                          
+          <div class="stat-name">Vagas<br>Esgotando</div>                                                                                                                                                   
+          <div class="stat-detail">Corre antes de fechar</div>
+        </div>                                                                                                                                                                                              
+        <div class="stat-card">                                                                                                                                                                             
+          <div class="stat-icon-box">         
+            <svg viewBox="0 0 24 24">                                                                                                                                                                       
+              <circle cx="12" cy="12" r="9"/>                                                                                                                                                             
+              <path d="M12 7v5l3 3"/>                                                                                                                                                                       
+            </svg>                                                                                                                                                                                        
+          </div>                                                                                                                                                                                            
           <div class="stat-name">Tips<br>Diárias</div>                                                                                                                                                      
           <div class="stat-detail">Só para membros</div>
         </div>                                                                                                                                                                                              
-        <div class="stat-card">                                                                                                                                                                           
-          <div class="stat-icon-box">                                                                                                                                                                       
+        <div class="stat-card">                                                                                                                                                                             
+          <div class="stat-icon-box">
             <svg viewBox="0 0 24 24">                                                                                                                                                                       
-              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>                                                                                                                                           
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>                                                                                                                                         
               <circle cx="9" cy="7" r="4"/>                                                                                                                                                                 
               <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/>                                                                                                                                
             </svg>                            
           </div>                                                                                                                                                                                            
-          <div class="stat-name">+11.000</div>                                                                                                                                                              
+          <div class="stat-name">+11.000</div>
           <div class="stat-detail">Já garantiram a vaga</div>                                                                                                                                               
-        </div>                                                                                                                                                                                              
+        </div>                                                                                                                                                                                            
       </div>                                                                                                                                                                                                
                                                                                                                                                                                                             
       <!-- SOCIAL PROOF -->                                                                                                                                                                                 
@@ -483,10 +539,10 @@
         <div class="social-text">                                                                                                                                                                           
           <span class="stars">★★★★★</span>                                                                                                                                                                  
           <strong>+11.000 pessoas</strong> já entraram. <span class="hl">Não fique pra depois!</span>                                                                                                       
-        </div>                                                                                                                                                                                            
+        </div>                                                                                                                                                                                              
       </div>                                                                                                                                                                                                
-                                                                                                                                                                                                            
+   
     </div>                                                                                                                                                                                                  
-  </div>                                                                                                                                                                                                    
+  </div>                                                                                                                                                                                                  
   </body>                                                                                                                                                                                                   
   </html>
